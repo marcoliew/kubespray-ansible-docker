@@ -1,0 +1,11 @@
+# aws ec2 ansible dynamic inventory plugin
+plugin: amazon.aws.aws_ec2
+regions:
+  - ap-southeast-2
+
+# The access key for your AWS account.
+aws_access_key_id: 
+# The secret access key for your AWS account.
+aws_secret_access_key: 
+
+aws_session_token: 

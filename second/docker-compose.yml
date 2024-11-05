@@ -1,0 +1,14 @@
+services:                     # representing a computing resource
+  base01:
+    build: ./base/            # 
+    image: base       # built image name 
+    container_name: base01
+    hostname: base01
+    command: bash -c "/var/run.sh"
+  base02:           # 
+    # links: 
+    # - base01       # built image name 
+    image: base
+    container_name: base02
+    hostname: base02
+    command: bash -c "/var/run.sh"    

@@ -1,0 +1,1 @@
+docker cp .\ansible\master\ansible\. master01:/var/ans

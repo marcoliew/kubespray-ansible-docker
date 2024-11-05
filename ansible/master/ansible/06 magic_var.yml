@@ -1,0 +1,10 @@
+---
+- name: Echo playbook
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Echo inventory_hostname
+      ansible.builtin.debug:
+        msg:
+          - "Hello from Ansible playbook!"
+          - "This is running on {{ hostvars }}"

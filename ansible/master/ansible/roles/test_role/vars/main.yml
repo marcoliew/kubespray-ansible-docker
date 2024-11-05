@@ -1,0 +1,5 @@
+---
+# vars file for test_role
+
+# vars file for webserver
+nginx_custom_directory: /home/ubuntu/nginx

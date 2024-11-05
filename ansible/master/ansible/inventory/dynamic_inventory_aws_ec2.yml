@@ -1,0 +1,26 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - ap-southeast-2
+# The access key for your AWS account.
+aws_access_key_id:
+aws_secret_access_key: 
+aws_session_token: 
+
+vars:
+    ansible_python_interpreter: /usr/bin/python3  
+filters:
+  tag:Environment: Testing  # Only include instances with these tags`
+hostnames: tag:Name
+keyed_groups:
+  - key: placement.region
+    prefix: aws_region
+  - key: tags['environment']
+    prefix: env
+  - key: tags['role']
+    prefix: role
+groups:
+   # add hosts to the "private_only" group if the host doesn't have a public IP associated to it
+  private_only: "public_ip_address is not defined"
+compose:
+  # use a private address where a public one isn't assigned
+  ansible_host: public_ip_address|default(private_ip_address)

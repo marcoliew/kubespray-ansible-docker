@@ -1,0 +1,43 @@
+- name: 1st block
+  hosts: web
+
+  roles:
+    - common
+  tasks:
+    - name: Not in a block
+      ansible.builtin.debug:
+        msg: This message is NOT in a block
+    
+    - name: this is in a block
+      block:
+        - name: first task
+          ansible.builtin.debug:
+            msg: This message is NOT in a block
+        - name: 2nd task
+          ansible.builtin.debug:
+            msg: This message is NOT in a block
+      when: ansible_facts['distribution'] == 'CentOS'  
+
+    - name: Rescue block
+      block:
+        - name: this runs
+          ansible.builtin.debug:
+            msg: This runs
+        - name: this fails
+          ansible.builtin.command: /bin/false
+      rescue:
+        - name: Solve the issues
+          ansible.builtin.debug:
+            msg: This task should solve the error    
+
+    - name: always block
+      block:
+        - name: this runs
+          ansible.builtin.debug:
+            msg: This runs
+        - name: this fails
+          ansible.builtin.command: /bin/false
+      always:
+        - name: run
+          ansible.builtin.debug:
+            msg: This task should solve the error    

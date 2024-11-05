@@ -1,0 +1,10 @@
+- name: first role been used
+  hosts: web
+
+  roles:
+    - common
+    - test_role
+  tasks:
+    - name: Install PHP
+      apt: name=php-cli state=present update_cache=yes
+      become: true

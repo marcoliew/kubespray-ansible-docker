@@ -1,0 +1,2 @@
+http_post: 80
+ansible_user: automation_user

@@ -1,0 +1,28 @@
+- name: Install and Configure Nginx
+  hosts: web
+  become: yes
+  tasks: 
+  - name: Install Nginx
+    ansible.builtin.apt:
+      update_cache: yes
+      name: nginx
+      state: present
+
+  - name: Create index.html
+    ansible.builtin.copy:
+      dest: /var/www/html/index.html
+      content: |
+        <!DOCTYPE html>
+        <html>
+        <head><title>Server Details</title></head>
+        <body>
+        <h1>Served from {{ ansible_hostname }}</h1>
+        </body>
+        </html>
+      mode: '0644'
+
+  - name: Ensure Nginx is running and enabled
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: yes

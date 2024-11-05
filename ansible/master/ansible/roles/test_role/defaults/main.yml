@@ -1,0 +1,5 @@
+---
+# defaults file for test_role
+
+nginx_version: 1.17.10-0ubuntu1
+nginx_custom_directory: /var/www/example_domain
